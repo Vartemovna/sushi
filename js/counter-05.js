@@ -7,6 +7,7 @@ window.addEventListener('click', function (event) {
   
   if (event.target.hasAttribute('data-cart')) {
     
+
     const card = event.target.closest('.card');
       
     
@@ -66,5 +67,10 @@ window.addEventListener('click', function (event) {
 
     card.querySelector('[data-counter]').innerText = '1'; //сброс счетчика до единицы в карточке, после добавления ко-ва в корзину
 
+
+    //отображение статуса корзины (пустая/полная)
+    toggleCartStatus();
+
+    calcCartPriceAndDelivery(); //пересчет общей стоимости товаров в корзине
   }
 })

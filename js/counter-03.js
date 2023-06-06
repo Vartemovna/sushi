@@ -18,10 +18,24 @@ window.addEventListener('click', function (event) {
        
     if (parseInt(counter.innerText) > 1 ) {            
         counter.innerText = --counter.innerText;
+    
+    } else if (event.target.closest('.cart-wrapper') && parseInt(counter.innerText) === 1) {  // проверка на товар, к-й в корзине
+        
+      event.target.closest('.cart-item').remove(); //удаляем товар из корзины
+      
+      // оттображение статуса корзины 
+      toggleCartStatus(); 
+
+      //пересчет общей стоимости товара
+      calcCartPriceAndDelivery();
     }
 
+  }
 
+  // проверяем клик на + или - внутри корзины
+  if (event.target.hasAttribute('data-action') && event.target.closest('.cart-wrapper')) {
 
+    calcCartPriceAndDelivery();
   }
 
 });
